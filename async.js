@@ -67,5 +67,46 @@ const promise = new Promise((resolve,reject) => {
         const student = {id:1, name:'John'};
         resolve(student)//resolve for fulfil
             reject(new Error('Student not found'))//reject for error
-    })
+    },2000)
 })
+
+//consuming promise
+promise
+    .then((result) => console.log(result))
+    .catch((error) => console.log(error))
+
+//promise
+const promise = getStudent(1)
+    
+promise
+    .then((studet) => getSubjects(studet.id))
+    .then((subjects) => getMarks(subjects[0]))
+    .then((mark) => console.log(mark))
+    .catch((error) => console.log(error))
+
+function getStudent(id){
+    return new Promise((resolve,reject) => {
+        setTimeout(() => {
+                console.log('Getting data from db');
+                resolve({name:'John',id:id})
+        },5000)
+    })
+}
+
+function getSubjects(id){
+    return new Promise((resolve,reject) => {
+        setTimeout(() => {
+                console.log('Getting data from db');
+                resolve(["Math","English"])
+        },3000)
+    })
+}
+
+function getMarks(subject){
+    return new Promise((resolve,reject) => {
+        setTimeout(() => {
+            console.log('Getting marks of',subject)
+            resolve(80)
+        },1500)
+    })
+}
