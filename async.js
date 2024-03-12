@@ -55,3 +55,17 @@ function getMarks(subject, callback) {
     callback(80);
 }, 2000);
 }
+
+/**
+ * Promises
+ */
+
+const promise = new Promise((resolve,reject) => {
+    //Async code
+    setTimeout(() => {
+        //getting data from db
+        const student = {id:1, name:'John'};
+        resolve(student)//resolve for fulfil
+            reject(new Error('Student not found'))//reject for error
+    })
+})
