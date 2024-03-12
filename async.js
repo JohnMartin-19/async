@@ -110,3 +110,67 @@ function getMarks(subject){
         },1500)
     })
 }
+
+
+/**
+ * ASYNC/
+ * AWAIT
+ */
+
+//Async syntax
+
+async function displayData(){
+    const student = await getStudent(1);
+    const subject = await getSubjects(student.id)
+    const mark = await getMarks(subject[0])
+    console.log('Mark',mark)
+}
+
+displayData();
+
+function getStudent(id){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('Getting data from db');
+            resolve({name:'John',id:id})
+        },2000)
+    })
+}
+
+function getSubjects(id){
+    return new Promise((resolve,reject) => {
+        setTimeout(() => {
+            console.log('getting subejcts of student',student)
+            resolve(['Math','Science'])
+
+        },3000)
+    })
+}
+
+function getMarks(subject){
+    return new Promise((reject,resolve) => {
+        setTimeout(() => {
+            console.log('Gtting marks of', subject)
+            resolve(70)
+        },4000)
+    })
+}
+
+/**
+ * Error handling using
+ * Try/
+ * Block
+ */
+
+//syntax
+
+async function displayData(){
+    try{
+        const student = await getStudent(id)
+        const subject = await getSubjects(student.id)
+        const mark = await getMarks(subjects[0])
+        console.log('Marks',mark)
+    } catch(error){
+        console.log(error)
+    }
+}
